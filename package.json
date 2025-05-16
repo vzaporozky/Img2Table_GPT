@@ -8,12 +8,10 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"lint": "gts lint",
 		"start": "ts-node-dev ./src/index.ts",
+		"test-img-ocr": "ts-node-dev ./src/image_ocr.ts",
+		"test-excel": "ts-node-dev ./src/crate_excel.ts",
 		"clean": "gts clean",
-		"compile": "tsc",
-		"fix": "gts fix",
-		"prepare": "npm run compile",
-		"pretest": "npm run compile",
-		"posttest": "npm run lint"
+		"compile": "tsc"
 	},
 	"devDependencies": {
 		"@types/node": "^22.7.5",
@@ -25,6 +23,7 @@
 	"dependencies": {
 		"dotenv": "^16.5.0",
 		"excel4node": "^1.8.2",
+		"exceljs": "^4.4.0",
 		"openai": "^4.98.0",
 		"python-shell": "^5.0.0"
 	}
