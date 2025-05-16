@@ -1,0 +1,26 @@
+{
+	"compilerOptions": {
+		"module": "CommonJS",
+		// "moduleResolution": "CommonJS",
+		"target": "ES2022",
+		"rootDir": ".",
+		"outDir": "./build",
+		"lib": ["ES2022"],
+		"allowUnreachableCode": false,
+		"allowUnusedLabels": false,
+		"forceConsistentCasingInFileNames": true,
+		"noEmitOnError": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitReturns": true,
+		"pretty": true,
+		"sourceMap": true,
+		"stripInternal": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		// "strict": true,
+		"incremental": true,
+		"skipLibCheck": true
+	},
+	"exclude": ["node_modules", "venv", "temp", "logs", "build"],
+	"include": ["src/**/*.ts", "test/**/*.ts"]
+}
