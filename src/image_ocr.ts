@@ -1,10 +1,10 @@
+import 'dotenv/config';
 import { createExcelFile } from './crate_excel';
-
-const { OpenAI } = require('openai');
-const fs = require('fs');
+import { OpenAI } from 'openai';
+import * as fs from 'fs';
 
 const openai = new OpenAI({
-	apiKey: process.env.OPENAI_API_KEY,
+	apiKey: process.env.OPENAI_API_KEY!,
 });
 
 function imageToBase64(imagePath) {
@@ -48,6 +48,7 @@ async function extractTextAndTable(imagePath) {
 }
 
 function extractJsonFromResponse(response) {
+	// console.log(response);
 	const jsonMatch = response.match(/```json\n([\s\S]*?)\n```/);
 	if (!jsonMatch) {
 		throw new Error('JSON was not found');
@@ -55,17 +56,19 @@ function extractJsonFromResponse(response) {
 	return JSON.parse(jsonMatch[1]);
 }
 
-async function main(imagePath, outputExcelPath) {
+async function textExtractMain(imagePath, outputExcelPath) {
 	try {
 		const response = await extractTextAndTable(imagePath);
 		const json_data = extractJsonFromResponse(response);
 
 		createExcelFile(json_data, outputExcelPath);
 
-		console.log('finish. file path ' + outputExcelPath);
+		// console.log('finish. file path ' + outputExcelPath);
 	} catch (error) {
-		console.error('Error:', error.message);
+		console.error('Error Main:', error.message);
 	}
 }
 
-main('./src/images/image.jpg', './src/images/output.xlsx');
+// textExtractMain('./src/images/image.jpg', './src/images/output.xlsx');
+
+export { textExtractMain, extractJsonFromResponse, extractTextAndTable };

@@ -1,7 +1,10 @@
 import { PythonShell } from 'python-shell';
 import * as path from 'path';
+import { textExtractMain } from './image_ocr';
 
-const imagePath = path.resolve(__dirname, 'images', 'image2.jpg');
+import 'dotenv/config';
+
+const imagePath = path.resolve(__dirname, 'images', 'image.jpg');
 const scriptPath = path.resolve(__dirname, 'image_contrast.py');
 
 let options = {
@@ -32,6 +35,8 @@ PythonShell.run(scriptPath, options)
 	.then(results => {
 		console.log('PythonShell callback triggered');
 		console.log('Python results:', results);
+
+		textExtractMain(results[0], './src/images/output.xlsx');
 	})
 	.catch(err => {
 		console.error('Python error:', err);

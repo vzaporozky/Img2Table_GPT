@@ -1,5 +1,5 @@
-const ExcelJS = require('exceljs');
-// const { data } = require('./utils/data');
+import ExcelJS from 'exceljs';
+// import { data } from './utils/data';
 
 async function createExcelFile(tableData, outputPath) {
 	if (tableData.length === 0) {
